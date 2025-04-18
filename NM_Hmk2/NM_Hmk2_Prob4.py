@@ -1,0 +1,52 @@
+import numpy as np
+
+b = np.array([[1],[1],[1]])
+A1 = np.array([[3.01,6.03,1.99],[1.27,4.16,-1.23],[0.987,-4.81,9.34]])
+A2 = np.array([[3.00,6.03,1.99],[1.27,4.16,-1.23],[0.99,-4.81,9.34]])
+
+A1_inv = np.linalg.inv(A1)
+A2_inv = np.linalg.inv(A2)
+
+x1 = np.matmul(A1_inv,b)
+x2 = np.matmul(A2_inv,b)
+
+E = A1-A2
+
+cond_num = np.linalg.cond(A1,"fro")
+print("Original A Matrix")
+print(A1)
+print("Changed A Matrix")
+print(A2)
+print("x")
+print(x1)
+print("x'")
+print(x2)
+print("Error matrix")
+print(E)
+print("cond_num")
+print(cond_num)
+print("norm of A1")
+norm_A = np.linalg.norm(A1)
+print(norm_A)
+print("norm of E")
+norm_E = np.linalg.norm(E)
+print(norm_E)
+print("x' norm")
+norm_x = np.linalg.norm(x2)
+print(norm_x)
+print("x1-x2")
+print(x1-x2)
+print("x1-x2 norm")
+norm_x1_x2 = np.linalg.norm((x1-x2))
+print(norm_x1_x2)
+
+print("Left Side")
+print(norm_x1_x2/norm_x)
+print("Right Side")
+print(cond_num*(norm_E/norm_A))
+
+print("A1_inv")
+print(A1_inv)
+print("A1_inv Norm")
+norm_Ainv = np.linalg.norm(A1_inv)
+print(norm_Ainv)
